@@ -11,13 +11,8 @@ Write-Host "====================================================================
 
 # 1. Ensure sample data exists
 if (-not (Test-Path "data\events_sample.csv")) {
-    Write-Host "[*] Sample data missing. Extracting 50,000 records..." -ForegroundColor Yellow
-    if (Test-Path "2019-Oct.csv\2019-Oct.csv") {
-        python extract_sample.py "2019-Oct.csv/2019-Oct.csv" 50000 "data/events_sample.csv"
-    } else {
-        Write-Error "[!] Error: Neither data/events_sample.csv nor 2019-Oct.csv source file was found!"
-        exit 1
-    }
+    Write-Error "[!] Error: Dataset data/events_sample.csv not found!"
+    exit 1
 } else {
     Write-Host "[+] Found sample dataset: data/events_sample.csv" -ForegroundColor Green
 }

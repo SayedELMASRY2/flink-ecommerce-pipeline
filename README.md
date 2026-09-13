@@ -361,22 +361,15 @@ if __name__ == "__main__":
 
 ```mermaid
 flowchart LR
-    A[1. اقتطاع 50K ريكورد<br/>extract_sample.py] --> B[2. تشغيل Flink Cluster<br/>Docker Compose]
+    A[1. تجهيز data/events_sample.csv] --> B[2. تشغيل Flink Cluster<br/>Docker Compose]
     B --> C[3. تنفيذ Flink SQL Pipeline<br/>sql-client.sh]
     C --> D[4. فحص الـ TaskManager<br/>تصدير execution_verification.log]
 ```
 
 ---
 
-### 🔹 الخطوة 1: اقتطاع عينة البيانات (50,000 سجل) في أجزاء من الثانية
-بما أن ملف Kaggle الأصلي (`2019-Oct.csv`) ضخم جداً (**5.28 GB** ويحتوي على **42.45 مليون سطر**)، نستخدم سكربت البايثون المخصص [extract_sample.py](file:///c:/Users/syd/Desktop/flink/extract_sample.py) لاقتطاع أول 50,000 سجل دون استهلاك للذاكرة في **0.04 ثانية**:
-
-```bash
-# تنفيذ أمر الاقتطاع المباشر:
-python extract_sample.py "2019-Oct.csv/2019-Oct.csv" 50000 "data/events_sample.csv"
-```
-> [!TIP]
-> يقوم السكربت تلقائياً بنقل سطر العناوين Header وتجهيز ملف العينة [data/events_sample.csv](file:///c:/Users/syd/Desktop/flink/data/events_sample.csv) بحجم **6.42 MB** ليكون جاهزاً لمعالجة الدفق الفوري.
+### 🔹 الخطوة 1: تجهيز عينة البيانات (50,000 سجل)
+تم إعداد وتجهيز ملف العينة [data/events_sample.csv](file:///c:/Users/syd/Desktop/flink/data/events_sample.csv) (بحجم **6.42 MB**) الذي يمثل دفق أحداث واقعية تغطي 3.5 ساعات متواصلة من متجر التجارة الإلكترونية، ليكون جاهزاً للترسيل والمعالجة الفورية عبر Flink.
 
 ---
 
@@ -469,7 +462,6 @@ flink/
 ├── README.md                        # خطة التنفيذ والشرح التفصيلي (هذا الملف)
 ├── run_pipeline.ps1                 # سكربت الأتمتة الشامل لـ PowerShell (Windows)
 ├── run_pipeline.sh                  # سكربت الأتمتة الشامل لـ Bash (Linux/Mac/Git Bash)
-├── extract_sample.py                # سكربت بايثون فائق السرعة لاقتطاع عينة من الملف الضخم
 ├── docker-compose.yml               # ملف تشغيل Apache Flink & TaskManager
 ├── flink_ecommerce_pipeline.sql     # استعلامات Flink SQL DDL والـ TVF
 ├── data/

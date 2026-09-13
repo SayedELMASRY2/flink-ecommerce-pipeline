@@ -12,13 +12,8 @@ echo "========================================================================"
 
 # 1. Ensure sample data exists
 if [ ! -f "data/events_sample.csv" ]; then
-    echo "[*] Sample data missing. Extracting 50,000 records..."
-    if [ -f "2019-Oct.csv/2019-Oct.csv" ]; then
-        python extract_sample.py "2019-Oct.csv/2019-Oct.csv" 50000 "data/events_sample.csv"
-    else
-        echo "[!] Error: Neither data/events_sample.csv nor 2019-Oct.csv source file was found!"
-        exit 1
-    fi
+    echo "[!] Error: Dataset data/events_sample.csv not found!"
+    exit 1
 else
     echo "[+] Found sample dataset: data/events_sample.csv"
 fi
