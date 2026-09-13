@@ -193,16 +193,20 @@ flowchart TD
 
 ## 💻 6. نصوص الأكواد (Code Implementation)
 
-### 📄 أولاً: ملف Flink SQL المعتمد (`flink_ecommerce_pipeline.sql`)
+### 📄 ملف Flink SQL المعتمد (`flink_ecommerce_pipeline.sql`)
 
 ```sql
 -- ====================================================================
 -- CartStream Analytics: Real-Time E-Commerce Revenue Stream Processing
 -- Apache Flink SQL Pipeline
+-- Task #26 (Samsung Innovation Campus)
 -- ====================================================================
 
--- 1. تعريف جدول المصدر (Streaming Source Table)
--- يقرأ أحداث المتجر مع استخراج الوقت وتحديد Watermark
+-- Enable Flink Streaming Runtime Mode explicitly
+SET 'execution.runtime-mode' = 'streaming';
+
+-- 1. Streaming Source Table DDL
+-- Reads continuous e-commerce activity records formatted in CSV
 CREATE TABLE ecommerce_events (
     event_time_str  VARCHAR,
     event_type      VARCHAR,
@@ -213,20 +217,20 @@ CREATE TABLE ecommerce_events (
     price           DECIMAL(10, 2),
     user_id         BIGINT,
     user_session    VARCHAR,
-    -- العمود المحسوب: تحويل النص إلى TIMESTAMP(3)
-    event_time AS TO_TIMESTAMP(event_time_str, 'yyyy-MM-dd HH:mm:ss z'),
-    -- استراتيجية الـ Watermark: تأخير 5 ثوانٍ لتفادي الأحداث غير المرتبة
+    -- Native event timestamp converted from original string (safeguarded against null parse errors)
+    event_time AS COALESCE(TO_TIMESTAMP(event_time_str, 'yyyy-MM-dd HH:mm:ss z'), TIMESTAMP '1970-01-01 00:00:00'),
+    -- Watermark declaration: 5-second bounded out-of-orderness tolerance
     WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND
 ) WITH (
     'connector' = 'filesystem',
-    'path' = '/opt/flink/data/events_sample.csv', -- مسار الملف داخل الحاوية أو السيرفر
+    'path' = '/opt/flink/data/events_sample.csv',
     'format' = 'csv',
     'csv.ignore-parse-errors' = 'true',
     'csv.allow-comments' = 'true'
 );
 
--- 2. تعريف جدول المخرجات (Streaming Sink Table)
--- لعرض النتائج مباشرة في Console عبر موصل print
+-- 2. Streaming Sink Table DDL
+-- Directs the streaming output to an append-only sink using Flink's print connector
 CREATE TABLE brand_window_sales (
     window_start      TIMESTAMP(3),
     window_end        TIMESTAMP(3),
@@ -239,13 +243,13 @@ CREATE TABLE brand_window_sales (
     'connector' = 'print'
 );
 
--- 3. استعلام التجميع عبر النوافذ المتدحرجة (Windowing TVF Query)
--- يجمع عمليات الشراء فقط كل 5 دقائق حسب العلامة التجارية
+-- 3. Windowing TVF & Real-Time Revenue Aggregation Query
+-- 5-minute tumbling window on completed purchase transactions grouped by brand
 INSERT INTO brand_window_sales
 SELECT
     window_start,
     window_end,
-    COALESCE(brand, 'UNKNOWN') AS brand,
+    COALESCE(NULLIF(TRIM(brand), ''), 'UNKNOWN') AS brand,
     COUNT(1) AS total_orders,
     ROUND(SUM(price), 2) AS gross_revenue,
     ROUND(AVG(price), 2) AS avg_order_value,
@@ -261,98 +265,7 @@ WHERE event_type = 'purchase'
 GROUP BY 
     window_start, 
     window_end, 
-    COALESCE(brand, 'UNKNOWN');
-```
-
----
-
-### 🐍 ثانياً: بديل بايثون PyFlink (`flink_ecommerce_streaming.py`)
-
-```python
-"""
-CartStream Analytics - PyFlink Streaming Application
-Task #26: Samsung Innovation Campus
-"""
-import os
-from pyflink.table import EnvironmentSettings, TableEnvironment
-
-def run_ecommerce_pipeline():
-    # 1. تهيئة بيئة Flink Streaming
-    env_settings = EnvironmentSettings.in_streaming_mode()
-    table_env = TableEnvironment.create(env_settings)
-
-    # تحديد مسار ملف البيانات
-    data_path = os.path.abspath("data/events_sample.csv").replace("\\", "/")
-
-    # 2. إنشاء جدول المصدر مع Watermark
-    source_ddl = f"""
-    CREATE TABLE ecommerce_events (
-        event_time_str  VARCHAR,
-        event_type      VARCHAR,
-        product_id      BIGINT,
-        category_id     BIGINT,
-        category_code   VARCHAR,
-        brand           VARCHAR,
-        price           DECIMAL(10, 2),
-        user_id         BIGINT,
-        user_session    VARCHAR,
-        event_time AS TO_TIMESTAMP(event_time_str, 'yyyy-MM-dd HH:mm:ss z'),
-        WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND
-    ) WITH (
-        'connector' = 'filesystem',
-        'path' = '{data_path}',
-        'format' = 'csv',
-        'csv.ignore-parse-errors' = 'true'
-    )
-    """
-    table_env.execute_sql(source_ddl)
-
-    # 3. إنشاء جدول المخرجات (Print Sink)
-    sink_ddl = """
-    CREATE TABLE brand_window_sales (
-        window_start      TIMESTAMP(3),
-        window_end        TIMESTAMP(3),
-        brand             VARCHAR,
-        total_orders      BIGINT,
-        gross_revenue     DECIMAL(10, 2),
-        avg_order_value   DECIMAL(10, 2),
-        unique_buyers     BIGINT
-    ) WITH (
-        'connector' = 'print'
-    )
-    """
-    table_env.execute_sql(sink_ddl)
-
-    # 4. تنفيذ استعلام التجميع عبر TVF
-    query = """
-    INSERT INTO brand_window_sales
-    SELECT
-        window_start,
-        window_end,
-        COALESCE(brand, 'UNKNOWN') AS brand,
-        COUNT(1) AS total_orders,
-        ROUND(SUM(price), 2) AS gross_revenue,
-        ROUND(AVG(price), 2) AS avg_order_value,
-        COUNT(DISTINCT user_id) AS unique_buyers
-    FROM TABLE(
-        TUMBLE(
-            TABLE ecommerce_events,
-            DESCRIPTOR(event_time),
-            INTERVAL '5' MINUTE
-        )
-    )
-    WHERE event_type = 'purchase'
-    GROUP BY 
-        window_start, 
-        window_end, 
-        COALESCE(brand, 'UNKNOWN')
-    """
-    table_result = table_env.execute_sql(query)
-    print("Pipeline started successfully! Awaiting results...")
-    table_result.wait()
-
-if __name__ == "__main__":
-    run_ecommerce_pipeline()
+    COALESCE(NULLIF(TRIM(brand), ''), 'UNKNOWN');
 ```
 
 ---
