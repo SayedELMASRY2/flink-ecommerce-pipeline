@@ -63,8 +63,7 @@
 
 ### 📦 المخرجات المطلوبة للتسليم (Requested Deliverables)
 1. **ملف الكود التنفيذي**:
-   - إما ملف SQL تنفيذي: `flink_ecommerce_pipeline.sql`
-   - أو سكربت بايثون متكامل: `flink_ecommerce_streaming.py`
+   - ملف Flink SQL تنفيذي معتمد: `flink_ecommerce_pipeline.sql`
 2. **سجل التحقق المرئي (Execution Verification Log)**:
    - سجل أو لقطات شاشة (Screenshots/Logs) تُظهر تشغيل الاستعلام وظهور نتائج النوافذ المجمعة من Flink SQL Client أو PyFlink Runner.
 3. **تقرير/شرح Watermark**:
@@ -473,7 +472,6 @@ flink/
 ├── extract_sample.py                # سكربت بايثون فائق السرعة لاقتطاع عينة من الملف الضخم
 ├── docker-compose.yml               # ملف تشغيل Apache Flink & TaskManager
 ├── flink_ecommerce_pipeline.sql     # استعلامات Flink SQL DDL والـ TVF
-├── flink_ecommerce_streaming.py     # تطبيق PyFlink المتكامل (خيار بديل)
 ├── data/
 │   └── events_sample.csv            # عينة بيانات المتجر من Kaggle
 └── output/
