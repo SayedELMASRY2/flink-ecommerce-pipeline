@@ -1,0 +1,23 @@
+# Large Raw Datasets (Do NOT commit 5GB files or zip archives to GitHub)
+2019-Oct.csv/
+*.csv.zip
+*.zip
+*.tar.gz
+2019-*.csv
+
+# Preserve sample data file for instant testing
+!data/events_sample.csv
+
+# Python byte-code and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# IDE & OS configuration files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
