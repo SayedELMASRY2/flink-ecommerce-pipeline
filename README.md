@@ -371,7 +371,6 @@ docker logs flink-taskmanager-1 > output/execution_verification.log
 
 ```text
 flink/
-├── #26 Task.pdf                     # ملف توصيف المهمة الأصلي
 ├── README.md                        # خطة التنفيذ والشرح التفصيلي (هذا الملف)
 ├── run_pipeline.ps1                 # سكربت الأتمتة الشامل لـ PowerShell (Windows)
 ├── run_pipeline.sh                  # سكربت الأتمتة الشامل لـ Bash (Linux/Mac/Git Bash)
