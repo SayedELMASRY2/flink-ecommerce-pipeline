@@ -10,6 +10,7 @@ services:
         jobmanager.rpc.address: jobmanager
     volumes:
       - ./data:/opt/flink/data
+      - ./output:/opt/flink/output
       - ./flink_ecommerce_pipeline.sql:/opt/flink/flink_ecommerce_pipeline.sql
 
   taskmanager:
@@ -24,6 +25,7 @@ services:
         taskmanager.numberOfTaskSlots: 2
     volumes:
       - ./data:/opt/flink/data
+      - ./output:/opt/flink/output
 
   sql-client:
     image: flink:1.18-scala_2.12
@@ -37,4 +39,5 @@ services:
         jobmanager.rpc.address: jobmanager
     volumes:
       - ./data:/opt/flink/data
+      - ./output:/opt/flink/output
       - ./flink_ecommerce_pipeline.sql:/opt/flink/flink_ecommerce_pipeline.sql
