@@ -82,6 +82,12 @@
 +I[2019-10-01T03:10, 2019-10-01T03:15, artel, 3, 770.64, 256.88, 1]
 +I[2019-10-01T03:10, 2019-10-01T03:15, omron, 1, 62.52, 62.52, 1]
 +I[2019-10-01T03:10, 2019-10-01T03:15, apple, 10, 5414.73, 541.47, 8]
+2026-09-13 20:51:47,612 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Finished reading from splits [0000000001]
+2026-09-13 20:51:47,623 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Finished reading split(s) [0000000001]
+2026-09-13 20:51:47,623 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcherManager [] - Closing splitFetcher 0 because it is idle.
+2026-09-13 20:51:47,624 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Shutting down split fetcher 0
+2026-09-13 20:51:47,624 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Split fetcher 0 exited.
+2026-09-13 20:51:47,636 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Reader received NoMoreSplits event.
 +I[2019-10-01T03:15, 2019-10-01T03:20, apple, 17, 14711.96, 865.41, 12]
 +I[2019-10-01T03:15, 2019-10-01T03:20, hp, 1, 571.19, 571.19, 1]
 +I[2019-10-01T03:15, 2019-10-01T03:20, rooman, 1, 66.67, 66.67, 1]
@@ -105,7 +111,6 @@
 +I[2019-10-01T03:15, 2019-10-01T03:20, huawei, 2, 888.26, 444.13, 2]
 +I[2019-10-01T03:15, 2019-10-01T03:20, UNKNOWN, 6, 274.35, 45.73, 5]
 +I[2019-10-01T03:15, 2019-10-01T03:20, samsung, 11, 2390.02, 217.27, 11]
-2026-09-13 17:55:22,472 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Finished reading from splits [0000000001]
 +I[2019-10-01T03:20, 2019-10-01T03:25, UNKNOWN, 12, 2650.10, 220.84, 11]
 +I[2019-10-01T03:20, 2019-10-01T03:25, apple, 10, 5457.20, 545.72, 6]
 +I[2019-10-01T03:20, 2019-10-01T03:25, midea, 1, 218.59, 218.59, 1]
@@ -120,6 +125,7 @@
 +I[2019-10-01T03:20, 2019-10-01T03:25, oppo, 1, 179.36, 179.36, 1]
 +I[2019-10-01T03:20, 2019-10-01T03:25, silverlit, 1, 118.97, 118.97, 1]
 +I[2019-10-01T03:20, 2019-10-01T03:25, embryolisse, 1, 41.16, 41.16, 1]
+2026-09-13 20:51:47,644 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Closing Source Reader.
 +I[2019-10-01T03:20, 2019-10-01T03:25, rondell, 2, 129.92, 64.96, 2]
 +I[2019-10-01T03:20, 2019-10-01T03:25, dauscher, 1, 36.01, 36.01, 1]
 +I[2019-10-01T03:20, 2019-10-01T03:25, vivo, 2, 463.28, 231.64, 2]
@@ -132,12 +138,9 @@
 +I[2019-10-01T03:20, 2019-10-01T03:25, elenberg, 2, 62.75, 31.38, 2]
 +I[2019-10-01T03:20, 2019-10-01T03:25, samsung, 15, 3768.19, 251.21, 15]
 +I[2019-10-01T03:20, 2019-10-01T03:25, versace, 1, 77.22, 77.22, 1]
-2026-09-13 17:55:22,523 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Finished reading split(s) [0000000001]
-2026-09-13 17:55:22,524 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcherManager [] - Closing splitFetcher 0 because it is idle.
-2026-09-13 17:55:22,524 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Shutting down split fetcher 0
-2026-09-13 17:55:22,525 INFO  org.apache.flink.connector.base.source.reader.fetcher.SplitFetcher [] - Split fetcher 0 exited.
-2026-09-13 17:55:22,535 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Reader received NoMoreSplits event.
+2026-09-13 20:51:47,646 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 (177171e4d9fb736c79beca4c5f643d5e_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from RUNNING to FINISHED.
 +I[2019-10-01T03:25, 2019-10-01T03:30, samsung, 16, 4412.70, 275.79, 13]
+2026-09-13 20:51:47,646 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Freeing task resources for Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 (177171e4d9fb736c79beca4c5f643d5e_cbc357ccb763df2852fee8c4fc7d55f2_0_0).
 +I[2019-10-01T03:25, 2019-10-01T03:30, luminarc, 1, 39.64, 39.64, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, nokia, 1, 115.55, 115.55, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, shivaki, 1, 161.37, 161.37, 1]
@@ -149,6 +152,7 @@
 +I[2019-10-01T03:25, 2019-10-01T03:30, babys, 1, 43.73, 43.73, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, huawei, 2, 433.95, 216.98, 2]
 +I[2019-10-01T03:25, 2019-10-01T03:30, cordiant, 1, 38.35, 38.35, 1]
+2026-09-13 20:51:47,650 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Un-registering task and sending final execution state FINISHED to JobManager for task Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 177171e4d9fb736c79beca4c5f643d5e_cbc357ccb763df2852fee8c4fc7d55f2_0_0.
 +I[2019-10-01T03:25, 2019-10-01T03:30, acer, 1, 772.19, 772.19, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, ibox, 1, 146.57, 146.57, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, UNKNOWN, 3, 332.49, 110.83, 2]
@@ -158,15 +162,11 @@
 +I[2019-10-01T03:25, 2019-10-01T03:30, triangle, 2, 81.86, 40.93, 2]
 +I[2019-10-01T03:25, 2019-10-01T03:30, rooman, 2, 102.44, 51.22, 2]
 +I[2019-10-01T03:25, 2019-10-01T03:30, adidas, 1, 11.88, 11.88, 1]
-2026-09-13 17:55:22,544 INFO  org.apache.flink.connector.base.source.reader.SourceReaderBase [] - Closing Source Reader.
 +I[2019-10-01T03:25, 2019-10-01T03:30, tarkett, 1, 5.79, 5.79, 1]
 +I[2019-10-01T03:25, 2019-10-01T03:30, apple, 9, 10358.24, 1150.92, 9]
 +I[2019-10-01T03:25, 2019-10-01T03:30, xiaomi, 6, 560.67, 93.45, 5]
 +I[2019-10-01T03:25, 2019-10-01T03:30, nintendo, 1, 470.26, 470.26, 1]
-2026-09-13 17:55:22,548 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 (134705ce79a16c5e6ecb4c5d709e2588_cbc357ccb763df2852fee8c4fc7d55f2_0_0) switched from RUNNING to FINISHED.
-2026-09-13 17:55:22,548 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Freeing task resources for Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 (134705ce79a16c5e6ecb4c5d709e2588_cbc357ccb763df2852fee8c4fc7d55f2_0_0).
 +I[2019-10-01T03:30, 2019-10-01T03:35, apple, 10, 7376.08, 737.61, 10]
-2026-09-13 17:55:22,553 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Un-registering task and sending final execution state FINISHED to JobManager for task Source: ecommerce_events[1] -> Calc[2] -> WatermarkAssigner[3] -> Calc[4] -> LocalWindowAggregate[5] (1/1)#0 134705ce79a16c5e6ecb4c5d709e2588_cbc357ccb763df2852fee8c4fc7d55f2_0_0.
 +I[2019-10-01T03:30, 2019-10-01T03:35, omron, 1, 62.52, 62.52, 1]
 +I[2019-10-01T03:30, 2019-10-01T03:35, cordiant, 1, 39.38, 39.38, 1]
 +I[2019-10-01T03:30, 2019-10-01T03:35, candy, 1, 360.34, 360.34, 1]
@@ -192,9 +192,9 @@
 +I[2019-10-01T03:30, 2019-10-01T03:35, samsung, 10, 3055.86, 305.59, 9]
 +I[2019-10-01T03:30, 2019-10-01T03:35, xiaomi, 7, 1337.74, 191.11, 6]
 +I[2019-10-01T03:30, 2019-10-01T03:35, UNKNOWN, 6, 527.95, 87.99, 5]
-2026-09-13 17:55:22,567 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 (134705ce79a16c5e6ecb4c5d709e2588_337adade1e207453ed3502e01d75fd03_0_0) switched from RUNNING to FINISHED.
-2026-09-13 17:55:22,567 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Freeing task resources for GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 (134705ce79a16c5e6ecb4c5d709e2588_337adade1e207453ed3502e01d75fd03_0_0).
-2026-09-13 17:55:22,568 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Un-registering task and sending final execution state FINISHED to JobManager for task GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 134705ce79a16c5e6ecb4c5d709e2588_337adade1e207453ed3502e01d75fd03_0_0.
-2026-09-13 17:55:22,685 INFO  org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl [] - Free slot TaskSlot(index:3, state:ACTIVE, resource profile: ResourceProfile{cpuCores=1, taskHeapMemory=192.000mb (201326587 bytes), taskOffHeapMemory=0 bytes, managedMemory=256.000mb (268435460 bytes), networkMemory=64.000mb (67108865 bytes)}, allocationId: d1ec69484146ea7581dc6efe5de7a317, jobId: b2e492ee5d14fd207f17707a4fcb113b).
-2026-09-13 17:55:22,688 INFO  org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService [] - Remove job b2e492ee5d14fd207f17707a4fcb113b from job leader monitoring.
-2026-09-13 17:55:22,689 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Close JobManager connection for job b2e492ee5d14fd207f17707a4fcb113b.
+2026-09-13 20:51:47,659 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 (177171e4d9fb736c79beca4c5f643d5e_337adade1e207453ed3502e01d75fd03_0_0) switched from RUNNING to FINISHED.
+2026-09-13 20:51:47,660 INFO  org.apache.flink.runtime.taskmanager.Task                    [] - Freeing task resources for GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 (177171e4d9fb736c79beca4c5f643d5e_337adade1e207453ed3502e01d75fd03_0_0).
+2026-09-13 20:51:47,661 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Un-registering task and sending final execution state FINISHED to JobManager for task GlobalWindowAggregate[7] -> Calc[8] -> Sink: brand_window_sales[9] (1/1)#0 177171e4d9fb736c79beca4c5f643d5e_337adade1e207453ed3502e01d75fd03_0_0.
+2026-09-13 20:51:47,821 INFO  org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl [] - Free slot TaskSlot(index:3, state:ACTIVE, resource profile: ResourceProfile{cpuCores=1, taskHeapMemory=192.000mb (201326587 bytes), taskOffHeapMemory=0 bytes, managedMemory=256.000mb (268435460 bytes), networkMemory=64.000mb (67108865 bytes)}, allocationId: de80beedb9a6bbd1c10255bc0aeec045, jobId: fb2dd5f07e02fa0e70e4b5a56e3e4e65).
+2026-09-13 20:51:47,824 INFO  org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService [] - Remove job fb2dd5f07e02fa0e70e4b5a56e3e4e65 from job leader monitoring.
+2026-09-13 20:51:47,825 INFO  org.apache.flink.runtime.taskexecutor.TaskExecutor           [] - Close JobManager connection for job fb2dd5f07e02fa0e70e4b5a56e3e4e65.
