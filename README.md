@@ -172,20 +172,20 @@
 ```mermaid
 flowchart TD
     subgraph Data Source
-        A[Kaggle CSV Dataset<br/>4M+ E-commerce Events] -->|Streaming Source| B[Source Table: ecommerce_events<br/>CSV / Filesystem Connector]
+        A["Kaggle CSV Dataset<br/>4M+ E-commerce Events"] -->|Streaming Source| B["Source Table: ecommerce_events<br/>CSV / Filesystem Connector"]
     end
 
     subgraph Flink Stream Processing Engine
-        B --> C[Event Time Extraction<br/>TO_TIMESTAMP: event_time_str]
-        C --> D[Watermark Strategy<br/>event_time - 5s Tolerance]
-        D --> E[Filter Purchases Only<br/>event_type = 'purchase']
-        E --> F[Windowing TVF<br/>TUMBLE: 5-Minute Non-Overlapping]
-        F --> G[Group By Aggregation<br/>window_start, window_end, brand<br/>- total_orders: COUNT(*)<br/>- gross_revenue: SUM(price)<br/>- avg_order_value: AVG(price)<br/>- unique_buyers: COUNT(DISTINCT user_id)]
+        B --> C["Event Time Extraction<br/>TO_TIMESTAMP: event_time_str"]
+        C --> D["Watermark Strategy<br/>event_time - 5s Tolerance"]
+        D --> E["Filter Purchases Only<br/>event_type = 'purchase'"]
+        E --> F["Windowing TVF<br/>TUMBLE: 5-Minute Non-Overlapping"]
+        F --> G["Group By Aggregation<br/>window_start, window_end, brand<br/>- total_orders: COUNT(*)<br/>- gross_revenue: SUM(price)<br/>- avg_order_value: AVG(price)<br/>- unique_buyers: COUNT(DISTINCT user_id)"]
     end
 
     subgraph Sink Destination
-        G -->|Append-Only Stream| H[Sink Table: brand_window_sales<br/>Print Connector / Console / Filesystem]
-        H --> I[Real-Time Analytics Dashboard]
+        G -->|Append-Only Stream| H["Sink Table: brand_window_sales<br/>Print Connector / Console / Filesystem"]
+        H --> I["Real-Time Analytics Dashboard"]
     end
 ```
 
@@ -274,9 +274,9 @@ GROUP BY
 
 ```mermaid
 flowchart LR
-    A[1. تجهيز data/events_sample.csv] --> B[2. تشغيل Flink Cluster<br/>Docker Compose]
-    B --> C[3. تنفيذ Flink SQL Pipeline<br/>sql-client.sh]
-    C --> D[4. فحص الـ TaskManager<br/>تصدير execution_verification.log]
+    A["1. تجهيز data/events_sample.csv"] --> B["2. تشغيل Flink Cluster<br/>Docker Compose"]
+    B --> C["3. تنفيذ Flink SQL Pipeline<br/>sql-client.sh"]
+    C --> D["4. فحص الـ TaskManager<br/>تصدير execution_verification.log"]
 ```
 
 ---
