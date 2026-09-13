@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <title>Samsung Innovation Campus - Task #26 Documentation</title>
@@ -9,7 +9,7 @@
             margin: 15mm 15mm 20mm 15mm;
             @bottom-center {
                 content: "Page " counter(page) " of " counter(pages);
-                font-family: 'Segoe UI', Tahoma, sans-serif;
+                font-family: 'Segoe UI', Arial, sans-serif;
                 font-size: 9pt;
                 color: #64748b;
             }
@@ -22,7 +22,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
             color: #0f172a;
             background-color: #ffffff;
             margin: 0;
@@ -48,9 +48,10 @@
             border: 1px solid rgba(56, 189, 248, 0.4);
             padding: 6px 16px;
             border-radius: 20px;
-            font-size: 11pt;
+            font-size: 10.5pt;
             font-weight: 600;
             margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
         .cover-title {
@@ -129,10 +130,10 @@
 
         .card-highlight {
             background-color: #f0f9ff;
-            border-right: 5px solid #0284c7;
+            border-left: 5px solid #0284c7;
             border-top: 1px solid #bae6fd;
             border-bottom: 1px solid #bae6fd;
-            border-left: 1px solid #bae6fd;
+            border-right: 1px solid #bae6fd;
             padding: 16px;
             border-radius: 8px;
             margin-bottom: 18px;
@@ -148,7 +149,7 @@
         th {
             background-color: #0f172a;
             color: #ffffff;
-            text-align: right;
+            text-align: left;
             padding: 10px 12px;
             font-weight: 600;
         }
@@ -164,8 +165,6 @@
 
         code, pre {
             font-family: 'Consolas', 'Courier New', monospace;
-            direction: ltr;
-            text-align: left;
         }
 
         code {
@@ -269,58 +268,58 @@
 
     <!-- Cover Page Header -->
     <div class="cover-page">
-        <div class="cover-badge">Samsung Innovation Campus - Data Engineering</div>
+        <div class="cover-badge">Samsung Innovation Campus - Data Engineering Program</div>
         <h1 class="cover-title">CartStream Analytics: Real-Time E-Commerce Stream Processing Pipeline</h1>
-        <div class="cover-subtitle">Apache Flink SQL & Windowing TVFs Comprehensive Project Report (Task #26)</div>
+        <div class="cover-subtitle">Apache Flink SQL & Windowing TVFs Comprehensive Engineering Report (Task #26)</div>
 
         <div class="meta-grid">
             <div class="meta-item">
-                <strong>مشروع التكليف (Task ID):</strong>
-                Task #26 - Flink Streaming Pipeline
+                <strong>Project Task ID:</strong>
+                Task #26 - Flink Real-Time Streaming Pipeline
             </div>
             <div class="meta-item">
-                <strong>مطور المنظومة (Engineer):</strong>
-                Sayed Elmasry (Data Platform Engineer)
+                <strong>Data Platform Engineer:</strong>
+                Sayed Elmasry (Junior Data Platform Engineer)
             </div>
             <div class="meta-item">
-                <strong>البيئة التكنولوجية (Tech Stack):</strong>
+                <strong>Tech Stack & Infrastructure:</strong>
                 Apache Flink 1.18, Docker Compose, Flink SQL Client
             </div>
             <div class="meta-item">
-                <strong>مستودع الكود (GitHub Repo):</strong>
+                <strong>Source Code Repository:</strong>
                 <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline" style="color: #38bdf8; text-decoration: underline;">SayedELMASRY2/flink-ecommerce-pipeline</a>
             </div>
         </div>
 
         <div style="text-align: center;">
             <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline" class="repo-button">
-                🌐 زيارة المستودع الرسمي على GitHub
+                🌐 Visit Official GitHub Repository
             </a>
         </div>
     </div>
 
     <!-- Section 1: Executive Overview -->
-    <h2 class="section-header">📌 1. نظرة عامة على المشروع (Executive Overview)</h2>
+    <h2 class="section-header">📌 1. Project Overview & Scenario</h2>
     <div class="card">
-        <p>يهدف هذا التقرير إلى توثيق خط معالجة البيانات الفوري <strong>(Real-Time Stream Processing Pipeline)</strong> المصمم لمتابعة تحليلات متجر التجارة الإلكترونية الدولي <strong>CartStream Analytics</strong>.</p>
-        <p>تستقبل المنصة دفقاً حياً مستمراً من تفاعلات وسلوكيات المشترين (تصفح <code>view</code>، إضافة لسلة التسوق <code>cart</code>، إزالة من السلة <code>remove_from_cart</code>، وحركات شراء مكتملة <code>purchase</code>). قمنا ببناء خط التجميع بالاعتماد على <strong>Apache Flink SQL</strong> مع تطبيق معالجة زمن الحدث <strong>Event-Time Processing</strong> وعلامات التزامن المائية <strong>Watermarks</strong> لتقديم مؤشرات أداء دقيقة وحتمية.</p>
+        <p>This technical report documents the end-to-end design, implementation, and execution of a real-time stream processing pipeline built for <strong>CartStream Analytics</strong>, an international e-commerce platform.</p>
+        <p>The platform ingests a continuous stream of user interaction events (including product views <code>view</code>, additions to cart <code>cart</code>, removals from cart <code>remove_from_cart</code>, and completed purchase transactions <code>purchase</code>). Utilizing <strong>Apache Flink SQL</strong>, this pipeline enforces <strong>Event-Time Processing</strong> and <strong>Bounded Out-of-Orderness Watermarks</strong> to deliver precise, deterministic real-time revenue analytics.</p>
     </div>
 
     <div class="card-highlight">
-        <strong>🎯 أهداف المنظومة الرئيسية:</strong>
+        <strong>🎯 Core Technical Objectives:</strong>
         <ul>
-            <li><strong>تجميع المبيعات حياً كل 5 دقائق</strong> عبر <code>TUMBLE</code> Table-Valued Functions (TVFs).</li>
-            <li><strong>استخراج مؤشرات الأعمال الدقيقة</strong> (إجمالي الطلبات المكتملة <code>total_orders</code>، الإيرادات <code>gross_revenue</code>، متوسط قيمة الطلب <code>avg_order_value</code>، والمشترين الفريدين <code>unique_buyers</code>).</li>
-            <li><strong>معالجة تحديات البيانات الواقعية</strong> (القيم المفقودة <code>NULL</code> في العلامات التجارية، وتأخير البيانات عبر الشبكة <code>Out-of-Order Events</code>).</li>
+            <li><strong>5-Minute Window Aggregations:</strong> Process live streams in non-overlapping 5-minute intervals using modern <code>TUMBLE</code> Table-Valued Functions (TVFs).</li>
+            <li><strong>Key Metric Calculations:</strong> Calculate completed orders (<code>total_orders</code>), gross revenue (<code>gross_revenue</code>), average order value (<code>avg_order_value</code>), and unique buyers (<code>unique_buyers</code>).</li>
+            <li><strong>Handling Real-World Data Challenges:</strong> Gracefully process missing brand names via <code>COALESCE</code> and handle out-of-order event arrivals across network boundaries.</li>
         </ul>
     </div>
 
     <!-- Section 2: Architecture Diagram -->
-    <h2 class="section-header">🏗️ 2. الهيكل المعماري للمنظومة (Pipeline Architecture)</h2>
+    <h2 class="section-header">🏗️ 2. Pipeline Architecture</h2>
     <div class="diagram-box">
-        <div style="font-weight: bold; color: #0f172a; margin-bottom: 15px; font-size: 11pt;">مخطط التدفق الفوري للبيانات (Real-Time Event Processing Flow)</div>
+        <div style="font-weight: bold; color: #0f172a; margin-bottom: 15px; font-size: 11pt;">End-to-End Stream Processing Data Flow</div>
         <div>
-            <span class="flow-step">📁 Kaggle E-Commerce Data Stream</span>
+            <span class="flow-step">📁 Kaggle E-Commerce Stream</span>
             <span class="flow-arrow">➔</span>
             <span class="flow-step">📥 Source Table DDL<br/><small>(ecommerce_events)</small></span>
             <span class="flow-arrow">➔</span>
@@ -333,46 +332,46 @@
     </div>
 
     <!-- Section 3: Dataset Schema -->
-    <h2 class="section-header">📑 3. هيكل الحقول والبيانات (Dataset Specification)</h2>
-    <p>تم الاعتماد على عينة أحداث واقعية تغطي 3.5 ساعات متواصلة بحجم <strong>50,000 سجل</strong> مأخوذة من قاعدة بيانات التجارة الإلكترونية العالمية على Kaggle:</p>
+    <h2 class="section-header">📑 3. Dataset Specification & Field Schema</h2>
+    <p>The pipeline operates on a sample stream of <strong>50,000 continuous event records</strong> covering 3.5 hours of continuous activity, derived from the Kaggle E-Commerce Events History dataset:</p>
     <table>
         <thead>
             <tr>
-                <th>الحقل (Property)</th>
-                <th>نوع البيانات (Flink SQL)</th>
-                <th>الوصف والأهمية التحليلية</th>
+                <th>Property Name</th>
+                <th>Flink SQL Datatype</th>
+                <th>Analytical Description & Processing Usage</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><code>event_time</code></td>
                 <td><code>TIMESTAMP(3)</code> (RowTime)</td>
-                <td>توقيت وقوع الحدث الأصلي مع إضافة <code>WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND</code>.</td>
+                <td>Native event timestamp with watermark rule: <code>WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND</code>.</td>
             </tr>
             <tr>
                 <td><code>event_type</code></td>
                 <td><code>VARCHAR</code></td>
-                <td>نوع التفاعل (تتم الفلترة على <code>WHERE event_type = 'purchase'</code> للطلبات الناجحة).</td>
+                <td>Interaction category. Filtered explicitly to completed purchase transactions: <code>WHERE event_type = 'purchase'</code>.</td>
             </tr>
             <tr>
                 <td><code>brand</code></td>
                 <td><code>VARCHAR</code></td>
-                <td>اسم الماركة التجارية، وتتم معالجته عبر <code>COALESCE(NULLIF(TRIM(brand), ''), 'UNKNOWN')</code>.</td>
+                <td>Product brand name. Safeguarded against nulls using <code>COALESCE(NULLIF(TRIM(brand), ''), 'UNKNOWN')</code>.</td>
             </tr>
             <tr>
                 <td><code>price</code></td>
                 <td><code>DECIMAL(10, 2)</code></td>
-                <td>سعر المنتج المشتري بالدولار، ويُستخدم في حساب الإيرادات ومعدل قيمة الطلبات.</td>
+                <td>Item purchase price in USD. Aggregated to compute revenue (<code>SUM</code>) and average order value (<code>AVG</code>).</td>
             </tr>
             <tr>
                 <td><code>user_id</code></td>
                 <td><code>BIGINT</code></td>
-                <td>المعرف الفريد للمستخدم، لحساب عدد المشترين الفريدين عبر <code>COUNT(DISTINCT user_id)</code>.</td>
+                <td>Permanent user identifier. Used to calculate unique purchasers per window: <code>COUNT(DISTINCT user_id)</code>.</td>
             </tr>
             <tr>
                 <td><code>user_session</code></td>
                 <td><code>VARCHAR</code></td>
-                <td>معرف الجلسة الفريد المتولد أثناء عملية الشراء.</td>
+                <td>Unique user session token generated during checkout.</td>
             </tr>
         </tbody>
     </table>
@@ -380,21 +379,21 @@
     <div class="page-break"></div>
 
     <!-- Section 4: Theoretical Q&A -->
-    <h2 class="section-header">🧠 4. الإجابة النظرية: استراتيجية الـ 5-Second Watermark</h2>
+    <h2 class="section-header">🧠 4. Theoretical Answer: 5-Second Watermark Strategy</h2>
     <div class="card-highlight">
-        <h3 class="subsection-header" style="margin-top: 0;">❓ السؤال النظري: كيف تضمن الـ 5-Second Watermark معالجة حتمية ودقيقة للنوافذ الزمنية؟</h3>
-        <p><strong>الإجابة الهندسية التفصيلية:</strong></p>
+        <h3 class="subsection-header" style="margin-top: 0;">❓ Question: Explain how this 5-second watermark boundary ensures deterministic window processing for out-of-order event arrivals.</h3>
+        <p><strong>Detailed Engineering Explanation:</strong></p>
         <ol>
-            <li><strong>تحدي وصول الأحداث غير المرتبة (Out-of-Order Arrivals):</strong> في بيئات الشبكات الحقيقية، قد يتأخر وصول حدث وقع في الساعة <code>10:04:58</code> ليصل إلى السيرفر في <code>10:05:02</code> بسبب بطء الاتصال.</li>
-            <li><strong>ساعة البيانات (Event Time vs Processing Time):</strong> يعتمد Flink على الطابع الزمني المكتوب داخل الحدث نفسه (Event Time) وليس وقت السيرفر الحالي.</li>
-            <li><strong>فترة السماح (Slack Tolerance Window):</strong> من خلال التعبير <code>event_time - INTERVAL '5' SECOND</code>، يمنح Flink مهلة قدرها 5 ثوانٍ لأي حدث متأخر، فلا يتم إغلاق النافذة الزمنية <code>[10:00:00, 10:05:00)</code> حتى يشاهد Flink حدثاً توقيته يسبق النافذة بـ 5 ثوانٍ (أي عند وصول حدث توقيته <code>10:05:05</code>).</li>
-            <li><strong>النتيجة الحتمية (Deterministic Output):</strong> يضمن ذلك دخول كافة الأحداث المتأخرة ضمن نافذتها الصحيحة بدون فقدان للبيانات، مما يجعل مخرجات التحليل متطابقة تماماً في كل مرة يتم فيها إعادة تشغيل التجميع.</li>
+            <li><strong>Network Latency & Out-of-Order Arrival:</strong> In real-world e-commerce networks, event packets generated at <code>10:04:58</code> might arrive at the processing engine at <code>10:05:02</code> due to variable network latency or temporary client disconnection.</li>
+            <li><strong>Event Time vs. Processing Time:</strong> Apache Flink relies on the timestamp embedded within the data record itself (Event Time) rather than the wall-clock time of the server (Processing Time).</li>
+            <li><strong>Slack / Tolerance Window Mechanics:</strong> By defining <code>WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND</code>, Flink grants a 5-second grace period for delayed records. A window spanning <code>[10:00:00, 10:05:00)</code> will not evaluate or close until Flink observes an event timestamp reaching or exceeding <code>10:05:05</code>.</li>
+            <li><strong>Guaranteed Determinism:</strong> This mechanism guarantees that delayed events falling within the 5-second window are properly routed to their correct time window, yielding 100% deterministic and reproducible analytics across pipeline executions.</li>
         </ol>
     </div>
 
     <!-- Section 5: Flink SQL Code -->
-    <h2 class="section-header">💻 5. كود الاستعلام المعتمد (Flink SQL Code)</h2>
-    <p>تمت كتابة وتوثيق كود التجميع كاملاً داخل الملف <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline/blob/main/flink_ecommerce_pipeline.sql"><code>flink_ecommerce_pipeline.sql</code></a>:</p>
+    <h2 class="section-header">💻 5. Flink SQL Pipeline Implementation Code</h2>
+    <p>The complete pipeline DDL and window aggregation query are maintained in <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline/blob/main/flink_ecommerce_pipeline.sql"><code>flink_ecommerce_pipeline.sql</code></a>:</p>
 
 <pre><span class="comment">-- Enable Flink Streaming Runtime Mode</span>
 <span class="keyword">SET</span> <span class="string">'execution.runtime-mode'</span> = <span class="string">'streaming'</span>;
@@ -458,12 +457,12 @@
 
     <div class="page-break"></div>
 
-    <!-- Section 6: Execution Verification & Logs -->
-    <h2 class="section-header">📊 6. إثبات التنفيذ والنتائج الحية (Execution Verification & Output)</h2>
-    <p>تم تشغيل الـ Pipeline بنجاح وتأكيد النتائج من واقع سجلات حاوية TaskManager الموثقة في <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline/blob/main/output/execution_verification.log"><code>output/execution_verification.log</code></a>:</p>
+    <!-- Section 6: Execution Verification & Output -->
+    <h2 class="section-header">📊 6. Live Execution Verification & Log Output</h2>
+    <p>The streaming job executes continuously on Flink 1.18. Output records are captured live from TaskManager logs into <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline/blob/main/output/execution_verification.log"><code>output/execution_verification.log</code></a>:</p>
 
     <div class="card">
-        <h3 class="subsection-header" style="margin-top: 0;">عينة من مخرجات التجميع الفوري للنوافذ المتدحرجة (5-Minute Tumbling Windows Output):</h3>
+        <h3 class="subsection-header" style="margin-top: 0;">Sample 5-Minute Tumbling Window Output Records (Print Sink Stream):</h3>
 <pre style="background: #090d16; color: #38bdf8;">
 +I[2019-10-01T02:55, 2019-10-01T03:00, apple, 11, 5672.95, 515.72, 6]
 +I[2019-10-01T02:55, 2019-10-01T03:00, samsung, 11, 2060.79, 187.34, 11]
@@ -478,46 +477,46 @@
     </div>
 
     <!-- Section 7: Screenshots Gallery -->
-    <h2 class="section-header">📸 7. معرض الصور ولَقطات الشاشة الموثقة (Execution Screenshots Proof)</h2>
+    <h2 class="section-header">📸 7. Verified Execution Proof & Screenshots</h2>
 
     <div class="img-container">
         <img src="docs_assets/Screenshot 2026-09-13 235309.png" alt="Execution Pipeline Console Step 3">
-        <div class="img-caption">شاشة 1: تشغيل السكريبت تلقائياً ورؤية مخرجات النوافذ المتدحرجة +I[...] الفورية</div>
+        <div class="img-caption">Figure 1: Automated Script Execution & Live Tumbling Window Aggregation Output (+I[...])</div>
     </div>
 
     <div class="img-container">
         <img src="docs_assets/Screenshot 2026-09-13 235319.png" alt="Log Verification File Output">
-        <div class="img-caption">شاشة 2: تأكيد حفظ أسطر المخرجات المجمعة داخل ملف output/execution_verification.log</div>
+        <div class="img-caption">Figure 2: TaskManager Log Capture Verification File (output/execution_verification.log)</div>
     </div>
 
     <div class="img-container">
         <img src="docs_assets/Screenshot 2026-09-13 235254.png" alt="GitHub Output Folder">
-        <div class="img-caption">شاشة 3: تأكيد تعريف وتحديث مجلد output داخل بيئة العمل ورفع الملفات على GitHub</div>
+        <div class="img-caption">Figure 3: Output Volume Mapping & Local Workspace Directory Structure</div>
     </div>
 
     <div class="img-container">
         <img src="docs_assets/Screenshot 2026-09-13 175204.png" alt="Task #26 Requirement DDL Task 1">
-        <div class="img-caption">شاشة 4: متطلب إنشاء Source DDL والـ Watermarks من كراسة التكليف الرسمية</div>
+        <div class="img-caption">Figure 4: Task #1 DDL & Watermarking Requirements from Official Task Prompt</div>
     </div>
 
     <div class="img-container">
         <img src="docs_assets/Screenshot 2026-09-13 175236.png" alt="Task #26 Requirement TVF Task 2">
-        <div class="img-caption">شاشة 5: متطلب معالجة النوافذ المتدحرجة 5-Minute Tumbling Windows والـ Sink Table</div>
+        <div class="img-caption">Figure 5: Task #2 Windowing TVF & Task #3 Sink Table Requirements</div>
     </div>
 
     <div class="page-break"></div>
 
     <!-- Section 8: Repository & Delivery Info -->
-    <h2 class="section-header">🌐 8. روابط التسليم والـ Repository الرسمية</h2>
+    <h2 class="section-header">🌐 8. Official Submission & Repository Links</h2>
     <div class="card-highlight" style="text-align: center; padding: 25px;">
-        <h3 style="margin-top: 0; color: #0369a1;">رابط مستودع المشروع الرسمي على GitHub:</h3>
+        <h3 style="margin-top: 0; color: #0369a1;">Official Project Source Code Repository on GitHub:</h3>
         <p style="font-size: 13pt; font-weight: bold; margin-bottom: 20px;">
             <a href="https://github.com/SayedELMASRY2/flink-ecommerce-pipeline" style="color: #0284c7; text-decoration: underline;">
                 https://github.com/SayedELMASRY2/flink-ecommerce-pipeline
             </a>
         </p>
         <p style="font-size: 10pt; color: #475569;">
-            يحتوي المستودع على الكود الكامل لـ SQL، وملف Docker Compose، وسكريبتات الأتمتة التلقائية <code>run_pipeline.ps1</code> و <code>run_pipeline.sh</code>، وعينة البيانات وسجلات التحقق المباشرة.
+            Includes complete SQL DDL/DML, Docker Compose orchestration, automated runner scripts (<code>run_pipeline.ps1</code> / <code>run_pipeline.sh</code>), sample datasets, and live verification logs.
         </p>
     </div>
 
