@@ -54,7 +54,7 @@
         }
 
         .cover-title {
-            font-size: 26pt;
+            font-size: 24pt;
             font-weight: 800;
             margin: 0 0 12px 0;
             line-height: 1.25;
@@ -62,7 +62,7 @@
         }
 
         .cover-subtitle {
-            font-size: 14pt;
+            font-size: 13pt;
             color: #94a3b8;
             margin-bottom: 25px;
             font-weight: 400;
@@ -107,11 +107,8 @@
             padding-bottom: 8px;
             margin-top: 35px;
             margin-bottom: 18px;
-            font-size: 16pt;
+            font-size: 15pt;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .subsection-header {
@@ -206,20 +203,23 @@
             padding: 12px;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
+            page-break-inside: avoid;
         }
 
         .img-container img {
             max-width: 100%;
+            max-height: 350px;
             height: auto;
             border-radius: 6px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #cbd5e1;
         }
 
         .img-caption {
-            font-size: 9pt;
-            color: #64748b;
+            font-size: 9.5pt;
+            color: #0369a1;
             margin-top: 8px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .diagram-box {
@@ -271,7 +271,7 @@
     <div class="cover-page">
         <div class="cover-badge">Samsung Innovation Campus - Data Engineering</div>
         <h1 class="cover-title">CartStream Analytics: Real-Time E-Commerce Stream Processing Pipeline</h1>
-        <div class="cover-subtitle">Apache Flink SQL & Windowing TVFs Integration Report (Task #26)</div>
+        <div class="cover-subtitle">Apache Flink SQL & Windowing TVFs Comprehensive Project Report (Task #26)</div>
 
         <div class="meta-grid">
             <div class="meta-item">
@@ -280,7 +280,7 @@
             </div>
             <div class="meta-item">
                 <strong>مطور المنظومة (Engineer):</strong>
-                Sayed Elmasry (Junior Data Platform Engineer)
+                Sayed Elmasry (Data Platform Engineer)
             </div>
             <div class="meta-item">
                 <strong>البيئة التكنولوجية (Tech Stack):</strong>
@@ -478,25 +478,37 @@
     </div>
 
     <!-- Section 7: Screenshots Gallery -->
-    <h2 class="section-header">📸 7. معرض الصور ولَقطات الشاشة (Project Proof Screenshots)</h2>
+    <h2 class="section-header">📸 7. معرض الصور ولَقطات الشاشة الموثقة (Execution Screenshots Proof)</h2>
 
     <div class="img-container">
-        <img src="docs_assets/uploaded_media_1789303429268.img.png" alt="Task #26 Requirement Statement">
-        <div class="img-caption">شاشة 1: متطلبات التكليف الرسمي Samsung Innovation Campus - Task #26</div>
+        <img src="docs_assets/Screenshot 2026-09-13 235309.png" alt="Execution Pipeline Console Step 3">
+        <div class="img-caption">شاشة 1: تشغيل السكريبت تلقائياً ورؤية مخرجات النوافذ المتدحرجة +I[...] الفورية</div>
     </div>
 
     <div class="img-container">
-        <img src="docs_assets/media_1789321858962.png.png" alt="Flink Cluster & Pipeline Execution">
-        <div class="img-caption">شاشة 2: متابعة تنشيط الفلترة والمعالجة الحية من واقع Flink Engine</div>
+        <img src="docs_assets/Screenshot 2026-09-13 235319.png" alt="Log Verification File Output">
+        <div class="img-caption">شاشة 2: تأكيد حفظ أسطر المخرجات المجمعة داخل ملف output/execution_verification.log</div>
     </div>
 
     <div class="img-container">
-        <img src="docs_assets/uploaded_media_1789310792205.img.png" alt="Log Trace Verification">
-        <div class="img-caption">شاشة 3: متابعة سجلات الحاوية للتأكد من عدم وجود أخطاء في الـ Watermark والحاوية</div>
+        <img src="docs_assets/Screenshot 2026-09-13 235254.png" alt="GitHub Output Folder">
+        <div class="img-caption">شاشة 3: تأكيد تعريف وتحديث مجلد output داخل بيئة العمل ورفع الملفات على GitHub</div>
     </div>
+
+    <div class="img-container">
+        <img src="docs_assets/Screenshot 2026-09-13 175204.png" alt="Task #26 Requirement DDL Task 1">
+        <div class="img-caption">شاشة 4: متطلب إنشاء Source DDL والـ Watermarks من كراسة التكليف الرسمية</div>
+    </div>
+
+    <div class="img-container">
+        <img src="docs_assets/Screenshot 2026-09-13 175236.png" alt="Task #26 Requirement TVF Task 2">
+        <div class="img-caption">شاشة 5: متطلب معالجة النوافذ المتدحرجة 5-Minute Tumbling Windows والـ Sink Table</div>
+    </div>
+
+    <div class="page-break"></div>
 
     <!-- Section 8: Repository & Delivery Info -->
-    <h2 class="section-header">🌐 8. روابط التسليم والـ Repository</h2>
+    <h2 class="section-header">🌐 8. روابط التسليم والـ Repository الرسمية</h2>
     <div class="card-highlight" style="text-align: center; padding: 25px;">
         <h3 style="margin-top: 0; color: #0369a1;">رابط مستودع المشروع الرسمي على GitHub:</h3>
         <p style="font-size: 13pt; font-weight: bold; margin-bottom: 20px;">
