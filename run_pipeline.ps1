@@ -15,4 +15,4 @@ docker exec flink-jobmanager-1 /opt/flink/bin/sql-client.sh -f /opt/flink/flink_
 
 # 3. Display TaskManager output logs
 Write-Host "[3/3] Displaying Tumbling Window Aggregation Output..." -ForegroundColor Green
-docker logs --tail 30 flink-taskmanager-1
+docker logs --tail 100 flink-taskmanager-1 | Select-String "\+I" | Select-Object -Last 30
