@@ -4,6 +4,9 @@
 -- Task #26 (Samsung Innovation Campus)
 -- ====================================================================
 
+-- Enable Flink Streaming Runtime Mode explicitly
+SET 'execution.runtime-mode' = 'streaming';
+
 -- 1. Streaming Source Table DDL
 -- Reads continuous e-commerce activity records formatted in CSV
 CREATE TABLE ecommerce_events (
